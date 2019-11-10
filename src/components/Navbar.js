@@ -6,12 +6,24 @@ const Navbar = () => {
     
     const [arrowClicked, setArrowClicked] = useState(true)
 
+    let opacity = 0;
+
+    function MyFadeInFunction() {
+    if (opacity<1) {
+        opacity += .1;
+        setTimeout(function(){MyFadeInFunction()}, 50);
+    }
+    document.getElementById('drop-down1').style.opacity = opacity;
+    }
+
+
     const languageClicked = () => {
 
         if (document.getElementById("arrow") && document.getElementById("drop-down1") ) {
             if (arrowClicked) {
                 document.getElementById("arrow").style.transform = "rotate(135deg)"
                 document.getElementById("drop-down1").style.display = "block"
+                MyFadeInFunction()
                 setArrowClicked(false)
             } else {
                 document.getElementById("arrow").style.transform = "rotate(-45deg)"
